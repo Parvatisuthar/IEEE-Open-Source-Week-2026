@@ -1,0 +1,150 @@
+/* section background, same as the HTML version */
+.upcoming-events {
+  background:
+    radial-gradient(900px 420px at 50% 0, rgba(47, 91, 255, 0.22), transparent 65%),
+    linear-gradient(180deg, #07102b, #060a1c 55%, #05070d);
+  border-block: 1px solid rgba(47, 91, 255, 0.4);
+}
+
+/* horizontal snap row */
+.upcoming-events-list {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px 20px 40px;
+  margin: 0 -20px;
+  perspective: 1200px;
+  scrollbar-color: #2a3647 transparent;
+}
+
+/* card */
+.upcoming-event-card {
+  flex: 0 0 min(340px, 80vw);
+  min-height: 580px;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(91, 132, 255, 0.3);
+  background: linear-gradient(180deg, #0f1a50, #080f2a 70%);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.25s ease-out, border-color 0.4s, box-shadow 0.4s;
+}
+.upcoming-event-card:nth-child(even) {
+  margin-top: 34px; /* the stagger */
+}
+.upcoming-event-card:hover {
+  border-color: rgba(34, 211, 238, 0.7);
+  box-shadow: 0 30px 70px -30px rgba(47, 91, 255, 0.7);
+}
+
+/* cyan scan line that runs down on hover */
+.upcoming-event-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--cy);
+  box-shadow: 0 0 14px var(--cy);
+  opacity: 0;
+  transition: top 1.2s;
+}
+.upcoming-event-card:hover::after {
+  top: 100%;
+  opacity: 1;
+}
+
+/* big outlined number */
+.upcoming-event-number {
+  font: 700 120px/0.9 var(--sa);
+  letter-spacing: -0.07em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(111, 149, 255, 0.32);
+  transition: 0.4s;
+}
+.upcoming-event-card:hover .upcoming-event-number {
+  -webkit-text-stroke-color: #b4f1fb;
+  transform: translateZ(40px) scale(1.05);
+}
+
+.upcoming-event-meta {
+  margin-top: 6px;
+  font: 12px var(--mo);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9db7ff;
+}
+
+.upcoming-event-card h3 {
+  margin: auto 0 8px; /* pushes title + everything below to the bottom */
+  padding-top: 28px;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.upcoming-event-speaker {
+  margin: 0 0 12px;
+  font: 500 12px var(--mo);
+  letter-spacing: 0.1em;
+  color: var(--cy);
+}
+
+.upcoming-event-info {
+  margin: 0 0 12px;
+  font: 12px/1.6 var(--mo);
+  letter-spacing: 0.06em;
+  color: #9db7ff;
+}
+
+.upcoming-event-description {
+  margin: 0 0 22px;
+  font-size: 15px;
+  color: var(--mu);
+}
+
+/* cut-corner button */
+.upcoming-event-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 26px;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  color: #a8eaf6;
+  font: 500 14px var(--mo);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: rgba(34, 211, 238, 0.06);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  transition: 0.3s;
+  cursor: pointer;
+}
+.upcoming-event-link:hover {
+  background: linear-gradient(115deg, #1fb6d6, #8fe6f4);
+  color: #04101a;
+  border-color: #8fe6f4;
+}
+.upcoming-event-link[aria-disabled="true"] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* coming soon card: slightly dimmer */
+.upcoming-event-card.is-soon .upcoming-event-number {
+  -webkit-text-stroke-color: rgba(111, 149, 255, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .upcoming-event-card,
+  .upcoming-event-card * {
+    transition: none !important;
+  }
+}

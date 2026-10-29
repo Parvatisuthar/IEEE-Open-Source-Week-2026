@@ -1,0 +1,136 @@
+/* ==========================================================
+   OSW shared tokens + utilities
+   Values copied from Open_Source_Week_IEEE_IGDTUW_Final_.html
+   (final colour system). All class names are prefixed "osw-"
+   so they can never clash with a teammate's CSS.
+   ========================================================== */
+:root {
+  --bg: #05070D;
+  --bg2: #09112A;
+  --sf: #0E1838;
+  --ln: #1B2A55;
+  --tx: #F4F7FF;
+  --mu: #B4BED6;
+  --cy: #22D3EE;
+  --cy2: #0EA5C9;
+  --vi: #8268F0;
+  --bl: #2F5BFF;
+  --bl2: #1B3FD6;
+  --ice: #B4F1FB;
+  --sa: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mo: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+/* page container */
+.osw-w {
+  width: min(1240px, 100% - clamp(40px, 8vw, 128px));
+  margin-inline: auto;
+}
+
+/* section shell: padding + thin gradient line on top */
+.osw-sec {
+  position: relative;
+  padding: clamp(96px, 13vw, 176px) 0;
+  font: 400 16px/1.6 var(--sa);
+  color: var(--tx);
+}
+.osw-sec::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(47, 91, 255, .7), rgba(34, 211, 238, .55), transparent);
+  opacity: .7;
+  pointer-events: none;
+}
+
+/* small mono label with a line in front ("About", "FAQs") */
+.osw-k {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 28px;
+  font: 500 12px var(--mo);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cy);
+}
+.osw-k::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--cy);
+}
+
+/* big section heading + outlined word */
+.osw-h2 {
+  margin: 0 0 clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  font-size: clamp(32px, 5.4vw, 72px);
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+.osw-out {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--tx);
+}
+
+/* cut-corner button */
+.osw-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 26px;
+  border: 1px solid rgba(34, 211, 238, .45);
+  background: rgba(34, 211, 238, .06);
+  color: #A8EAF6;
+  font: 500 14px var(--mo);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  cursor: pointer;
+  transition: .3s;
+}
+.osw-btn:hover {
+  background: linear-gradient(115deg, #1FB6D6, #8FE6F4);
+  color: #04101A;
+  border-color: #8FE6F4;
+}
+.osw-btn--f {
+  background: linear-gradient(115deg, #1B3FD6, #2B58F0 58%, #1FA8D0);
+  color: #fff;
+}
+
+/* scroll reveal (toggled by the useReveal hook) */
+.osw-rv {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .9s, transform .9s cubic-bezier(.2, .8, .2, 1);
+}
+.osw-rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* visually hidden, still read by screen readers */
+.osw-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cy);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .osw-rv { opacity: 1; transform: none; }
+  .osw-btn, .osw-rv { transition: none; }
+}

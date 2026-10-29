@@ -1,0 +1,212 @@
+
+.prizes-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 0% 100%,
+      rgba(0, 190, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(100, 45, 180, 0.10),
+      transparent 50%
+    ),
+    #05070d;
+}
+
+/* Animated background canvas */
+.prizes-star-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Keep all content above the background animation */
+.prizes-section > .osw-w {
+  position: relative;
+  z-index: 1;
+}
+
+.prizes-intro {
+  max-width: 620px;
+  margin: -20px 0 48px;
+  color: var(--mu);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.prizes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  align-items: stretch;
+  perspective: 1000px;
+}
+
+.prize-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  min-height: 380px;
+  padding: 40px 30px;
+  overflow: hidden;
+  border: 1px solid var(--ln);
+  border-radius: 24px;
+  background: linear-gradient(
+    160deg,
+    rgba(15, 24, 45, 0.96),
+    rgba(7, 12, 27, 0.97) 75%
+  );
+  text-align: center;
+  transform-style: preserve-3d;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+/* Existing purple hover spotlight */
+.prize-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at 50% 35%,
+    rgba(139, 92, 246, 0.28),
+    rgba(99, 102, 241, 0.1) 30%,
+    transparent 68%
+  );
+  transition: opacity 250ms ease;
+}
+
+.prize-card:hover::before {
+  opacity: 1;
+}
+
+.prize-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.prize-card:hover {
+  transform: translateY(-10px) rotateX(3deg) rotateY(-2deg);
+  border-color: var(--cy);
+  box-shadow:
+    0 20px 45px rgba(34, 211, 238, 0.14),
+    0 0 24px rgba(34, 211, 238, 0.08);
+}
+
+.prize-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 32px;
+  border: 1px solid var(--ln);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 48px;
+  transition:
+    transform 250ms ease,
+    filter 250ms ease;
+}
+
+.prize-card:hover .prize-icon {
+  transform: translateZ(25px) scale(1.08);
+}
+
+.prizes-first .prize-icon {
+  filter: drop-shadow(0 0 18px rgba(255, 196, 55, 0.35));
+}
+
+.prizes-second .prize-icon {
+  filter: drop-shadow(0 0 18px rgba(190, 200, 230, 0.3));
+}
+
+.prizes-third .prize-icon {
+  filter: drop-shadow(0 0 18px rgba(218, 139, 83, 0.35));
+}
+
+.prize-card h3 {
+  margin: 0 0 20px;
+  color: var(--tx);
+  font-family: var(--sa);
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.prize-description {
+  max-width: 360px;
+  margin: 0;
+  color: var(--mu);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.prizes-first {
+  border-top: 2px solid #f4c95d;
+}
+
+.prizes-second {
+  border-top: 2px solid #b7c5dc;
+}
+
+.prizes-third {
+  border-top: 2px solid #c99570;
+}
+
+@media (max-width: 900px) {
+  .prizes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .prizes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prize-card {
+    min-height: 300px;
+    padding: 30px 24px;
+  }
+
+  .prize-card h3 {
+    font-size: 26px;
+  }
+
+  .prize-description {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prizes-star-canvas {
+    display: none;
+  }
+
+  .prize-card,
+  .prize-icon,
+  .prize-card::before {
+    transition: none;
+  }
+
+  .prize-card:hover,
+  .prize-card:hover .prize-icon {
+    transform: none;
+  }
+}

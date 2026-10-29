@@ -1,0 +1,23 @@
+html { 
+  scroll-behavior: smooth; 
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: var(--bg);
+  color: var(--tx);
+  font: 400 16px/1.6 var(--sa);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  display: block;
+}

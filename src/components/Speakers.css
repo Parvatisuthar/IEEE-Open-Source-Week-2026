@@ -1,0 +1,140 @@
+/* ==========================================================
+   Speakers section styles
+   Derived from the IEEE IGDTUW Open Source Week reference design
+   ========================================================== */
+
+.speakers,
+.speakers *,
+.speakers *::before,
+.speakers *::after {
+  box-sizing: border-box;
+}
+
+.speakers {
+  background:
+    radial-gradient(700px 520px at 0 65%, rgba(47, 91, 255, .1), transparent 65%),
+    rgba(5, 7, 13, .55);
+}
+
+.speakers-k {
+  color: #8DAAFF;
+}
+
+.speakers-k::before {
+  background: currentColor;
+}
+
+.speakers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.speakers-card {
+  position: relative;
+  margin: 0;
+}
+
+/* Staggered card positioning matching the original HTML reference */
+.speakers-card:nth-child(2) {
+  margin-top: 70px;
+}
+
+.speakers-card:nth-child(3) {
+  margin-top: 30px;
+}
+
+.speakers-card:nth-child(4) {
+  margin-top: 100px;
+}
+
+/* Portrait placeholder container with 3:4 aspect ratio and cut corner */
+.speakers-portrait {
+  aspect-ratio: 3 / 4;
+  background:
+    repeating-linear-gradient(0deg, rgba(34, 211, 238, .07) 0 1px, transparent 1px 4px),
+    linear-gradient(160deg, #141C48, #070A18);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%);
+  display: grid;
+  place-items: center;
+  font: 700 120px var(--sa);
+  color: #2A3668;
+  overflow: hidden;
+  position: relative;
+  transition: color .5s, filter .5s;
+  user-select: none;
+}
+
+.speakers-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1);
+}
+
+.speakers-card:hover .speakers-portrait {
+  color: var(--cy);
+  filter: drop-shadow(0 0 24px rgba(34, 211, 238, .35));
+}
+
+.speakers-name {
+  margin: -34px 0 4px 14px;
+  position: relative;
+  font-size: clamp(22px, 2.6vw, 34px);
+  letter-spacing: -.04em;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--tx);
+  mix-blend-mode: difference;
+}
+
+.speakers-role {
+  margin: 0 0 0 14px;
+  color: #9DB7FF;
+  font: 12px var(--mo);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Responsive: 2 columns on tablet/laptop screens */
+@media (max-width: 860px) {
+  .speakers-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .speakers-card:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .speakers-card:nth-child(even) {
+    margin-top: 50px;
+  }
+}
+
+/* Responsive: 1 column on narrow mobile devices */
+@media (max-width: 480px) {
+  .speakers-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .speakers-card {
+    max-width: 320px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .speakers-card:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .speakers-card:nth-child(even) {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .speakers-portrait {
+    transition: none;
+  }
+}
