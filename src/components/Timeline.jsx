@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import "./Timeline.css";
 
@@ -8,15 +9,18 @@ const EVENTS = [
     title: "Registration Opens",
     desc: "Register yourself through unstop and join the discord channel.",
     links: [
-      { label: "Register", url: "" },     // paste Unstop link here
-      { label: "Join Discord", url: "" }, // paste Discord invite here
+      { label: "Register", url: "" },
+      {
+        label: "Join Discord",
+        url: "https://discord.gg/2zKh4dp7J",
+      },
     ],
   },
   {
     date: "12th Nov - 18th Nov",
     title: "Contribution Period",
     desc: "Start contributing, collaborating, and bringing your ideas to life.",
-    links: [{ label: "Guidelines", url: "" }], // paste guidelines link here
+    links: [{ label: "Guidelines", url: "" }],
   },
   {
     date: "18th Nov 2025",
@@ -44,7 +48,7 @@ function Corner({ right }) {
 }
 
 export default function Timeline() {
-  const [open, setOpen] = useState(0); // first card open by default
+  const [open, setOpen] = useState(0);
   const [height, setHeight] = useState(0);
   const bodies = useRef([]);
 
@@ -53,11 +57,15 @@ export default function Timeline() {
       const el = bodies.current[open];
       setHeight(el ? el.scrollHeight : 0);
     };
+
     bodies.current.forEach((el, i) => {
-      if (el) el.inert = i !== open; // collapsed cards can't be tabbed into
+      if (el) el.inert = i !== open;
     });
+
     measure();
+
     window.addEventListener("resize", measure);
+
     return () => window.removeEventListener("resize", measure);
   }, [open]);
 
@@ -71,9 +79,11 @@ export default function Timeline() {
             <i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
         </div>
+
         <div className="otl-grid" aria-hidden="true"></div>
 
         <p className="otl-k">Event timeline</p>
+
         <h2 className="otl-h2">
           The <span className="otl-out">commit</span>
           <br />
@@ -84,41 +94,66 @@ export default function Timeline() {
           {EVENTS.map((e, i) => {
             const n = String(i + 1).padStart(2, "0");
             const on = open === i;
+
             return (
               <article
                 key={e.title}
                 className={"otl-item" + (on ? " on" : "")}
                 style={on ? { height: height + "px" } : undefined}
                 onClick={(ev) => {
-                  if (ev.target.closest("a,.otl-btn")) return; // let links work
+                  if (ev.target.closest("a,.otl-btn")) return;
                   toggle(i);
                 }}
               >
-                <button type="button" className="otl-hd" aria-expanded={on}>
+                <button
+                  type="button"
+                  className="otl-hd"
+                  aria-expanded={on}
+                >
                   <b>⎇ {n}</b>
                   <em>{e.date}</em>
                   <span>{e.title}</span>
                 </button>
 
-                <div className="otl-body" ref={(el) => (bodies.current[i] = el)}>
+                <div
+                  className="otl-body"
+                  ref={(el) => (bodies.current[i] = el)}
+                >
                   <Corner />
                   <Corner right />
-                  <div className="otl-nn" aria-hidden="true">{n}</div>
+
+                  <div className="otl-nn" aria-hidden="true">
+                    {n}
+                  </div>
+
                   <div className="otl-tt">
                     <h3>{e.title}</h3>
                     <small>{e.date}</small>
                   </div>
+
                   <p className="otl-desc">{e.desc}</p>
+
                   {e.links.length > 0 && (
                     <div className="otl-acts">
                       {e.links.map((l, j) => {
                         const cls = "otl-btn" + (j === 0 ? " f" : "");
+
                         return l.url ? (
-                          <a key={l.label} className={cls} href={l.url} target="_blank" rel="noopener noreferrer">
+                          <a
+                            key={l.label}
+                            className={cls}
+                            href={l.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             {l.label}
                           </a>
                         ) : (
-                          <span key={l.label} className={cls} aria-disabled="true">
+                          <span
+                            key={l.label}
+                            className={cls}
+                            aria-disabled="true"
+                          >
                             {l.label}
                           </span>
                         );

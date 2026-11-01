@@ -8,7 +8,7 @@ import logo from "../assets/ieee-logo.png";
 const TAGLINE =
   "Advancing technology for humanity, powered by women who engineer the future.";
 
-const EMAIL = "igdtwieee@gmail.com";
+const EMAIL = "ieeeigdtu@gmail.com";
 const ADDRESS = "Kashmere Gate, Delhi 110006";
 
 const SOCIALS = [

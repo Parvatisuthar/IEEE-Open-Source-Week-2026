@@ -460,9 +460,7 @@ function Faqs() {
                 <button
                   key={category.value}
                   type="button"
-                  className={`faqs-tab-btn${
-    isActive ? " active" : ""
-}`}
+                  className={`faqs-tab-btn${isActive ? " active" : ""}`}
                   aria-pressed={isActive}
                   onClick={() =>
                     handleCategoryChange(category.value)
@@ -482,9 +480,7 @@ function Faqs() {
 
               return (
                 <article
-                  className={`faqs-item${
-    isOpen ? " active" : ""
-}`}
+                  className={`faqs-item${isOpen ? " active" : ""}`}
                   key={item.id}
                 >
                   <h3 className="faqs-question-heading">
@@ -550,8 +546,10 @@ function Faqs() {
 
             <a
               className="faqs-contact-btn"
-              href="mailto:igdtwieee@gmail.com"
-              aria-label="Contact the IEEE IGDTUW team with a question"
+              href="https://discord.gg/2zKh4dp7J"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Join the IEEE IGDTUW Discord server"
             >
               Ask on Discord{" "}
               <span aria-hidden="true">💬</span>
